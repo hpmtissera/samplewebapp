@@ -1,0 +1,30 @@
+body {
+    padding-top: 5rem;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+h1 {
+    color: #0000FF;
+}
+
+h2 {
+    color: #FF0000;
+}
+
+/*We don't need these css because we use bootstrap css*/
+/*.add-form {*/
+/*    display: table;*/
+/*}*/
+
+/*.add-form div {*/
+/*    display: table-row;*/
+/*}*/
+
+/*.add-form div label {*/
+/*    display: table-cell;*/
+/*    padding-bottom: 10px;*/
+/*}*/

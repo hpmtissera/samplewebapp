@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <title>Users Example</title>
+
+    <!--This load the bootstrap css styles to the page-->
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <!--This load the main.css samplewebapp/src/main/resources/static/css/main.css file-->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Users</a>
+</nav>
+
+<main class="container" role="main">
+
+    <table class="table">
+        <!--/*@thymesVar id="users" type="java.util.List<com.example.User>"*/-->
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <!-- th:each is a for loop. The for-loop loop through 'users' list passed to the Model class inside MainController.java -->
+        <!-- <tr> and <td> are usual html tags used to define table row and table columns-->
+        <!-- `each` loop assign users one by one to 'user' variable-->
+        <!-- ${user.name} and ${user.age} call repective getName() and getAge() methods defined in User.java class-->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+        </tr>
+    </table>
+
+    <!--/*@thymesVar id="user" type="com.example.User"*/-->
+    <!-- This section is used to show add user form and then call submitForm() method in MainController.java when user clicked Add user button-->
+    <!-- th:action="@{/add}" is used to find the correct method to call when Add user button clicked-->
+    <!-- submitForm() method is annotated using @PostMapping("/add") to make it possible to identify-->
+    <form action="#" method="post" th:action="@{/add}" th:object="${user}">
+        <!--  class="form-group" is a css style class defined in BootStrap css library      -->
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-control" id="name" th:field="*{name}" type="text"/><br/>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input class="form-control" id="age" th:field="*{age}" type="text"/><br/>
+        </div>
+
+        <!--When Add User button clicked it calls MainController.java submitForm() method-->
+        <!--Thymeleaf find the correct method using the @PostMapping("/add") annotation in submitForm() method.-->
+        <!--  class="btn btn-primary" is a css style class defined in BootStrap css library      -->
+        <button class="btn btn-primary" type="submit">Add User</button>
+    </form>
+</main>
+
+<script th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}" type="text/javascript"></script>
+</body>
+</html>
